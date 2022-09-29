@@ -79,7 +79,7 @@ const AppProvider = ({ children }) => {
     // fetchMostPopular();
     // fetchTopAnimes();
     // fetchMostFavorited()
-  }, [search]);
+  }, []);
 
   return (
     <AppContext.Provider
