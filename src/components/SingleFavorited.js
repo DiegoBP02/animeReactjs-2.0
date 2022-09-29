@@ -1,5 +1,6 @@
 import React from "react";
 import { BsFillStarFill } from "react-icons/bs";
+import { useGlobalContext } from "./context";
 
 const SingleFavorited = ({ anime }) => {
   const { title, year, url, members, favorites } = anime;

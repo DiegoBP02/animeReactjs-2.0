@@ -387,6 +387,34 @@ nav {
   font-size: 1.5rem;
 }
 
+.errorRequests {
+  width: 90vw;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  color: var(--clr-red-dark);
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  font-size: 1.5rem;
+}
+
+.errorRequests span {
+  font-size: 1.15rem;
+}
+
+.errorRequestsCenter {
+  text-align: center;
+  color: var(--clr-red-dark);
+  text-transform: capitalize;
+  letter-spacing: var(--spacing);
+  font-size: 2rem;
+  margin-top: 2.5rem;
+}
+
+.errorRequestsCenter span {
+  font-size: 1.25rem;
+  margin-right: 0;
+}
+
 /* top animes */
 
 .title-form {

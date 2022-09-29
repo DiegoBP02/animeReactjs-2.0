@@ -4,11 +4,25 @@ import { useGlobalContext } from "./context";
 import SingleFavorited from "./SingleFavorited";
 
 const MostFavorited = () => {
-  const { isLoading, mostFavorited, fetchMostFavorited } = useGlobalContext();
+  const { isLoading, mostFavorited, fetchMostFavorited, isError } =
+    useGlobalContext();
 
   useEffect(() => {
     fetchMostFavorited();
   }, []);
+
+  if (isError) {
+    return (
+      <>
+        <Navbar />
+        <div className="errorRequestsCenter">
+          Too Many Requests!
+          <br />
+          <span>Please try again later!</span>
+        </div>
+      </>
+    );
+  }
 
   if (isLoading) {
     return (

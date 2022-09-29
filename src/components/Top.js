@@ -4,12 +4,24 @@ import { useGlobalContext } from "./context";
 import SingleTopAnime from "./SingleTopAnime";
 
 const Top = () => {
-  const { mostPopular, isLoading, fetchMostPopular } = useGlobalContext();
+  const { mostPopular, isLoading, fetchMostPopular, isError } =
+    useGlobalContext();
 
   useEffect(() => {
     fetchMostPopular();
   }, []);
-
+  if (isError) {
+    return (
+      <>
+        <Navbar />
+        <div className="errorRequestsCenter">
+          Too Many Requests!
+          <br />
+          <span>Please try again later!</span>
+        </div>
+      </>
+    );
+  }
   if (isLoading) {
     return (
       <>

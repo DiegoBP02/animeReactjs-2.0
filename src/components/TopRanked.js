@@ -4,11 +4,24 @@ import { useGlobalContext } from "./context";
 import SingleTopRanked from "./SingleTopRanked";
 
 const TopRanked = () => {
-  const { TopAnimes, isLoading, fetchTopAnimes } = useGlobalContext();
+  const { TopAnimes, isLoading, fetchTopAnimes, isError } = useGlobalContext();
 
   useEffect(() => {
     fetchTopAnimes();
   }, []);
+
+  if (isError) {
+    return (
+      <>
+        <Navbar />
+        <div className="errorRequestsCenter">
+          Too Many Requests!
+          <br />
+          <span>Please try again later!</span>
+        </div>
+      </>
+    );
+  }
 
   if (isLoading) {
     return (

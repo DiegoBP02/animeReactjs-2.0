@@ -10,6 +10,7 @@ const AppProvider = ({ children }) => {
   const [mostPopular, setMostPopular] = useState([]);
   const [TopAnimes, setTopAnimes] = useState([]);
   const [mostFavorited, setMostFavorited] = useState([]);
+  const [isError, setIsError] = useState(false);
 
   const fetchAnime = async (query) => {
     setIsLoading(true);
@@ -18,7 +19,12 @@ const AppProvider = ({ children }) => {
     );
     const data = await response.json();
     setIsLoading(false);
-    setAnimeList(data.data);
+    if (data.data.length > 0) {
+      setAnimeList(data.data);
+    }
+    if (data.status == 429) {
+      setIsError(true);
+    }
   };
   const fetchMostPopular = async () => {
     setIsLoading(true);
@@ -27,7 +33,12 @@ const AppProvider = ({ children }) => {
     );
     const data = await response.json();
     setIsLoading(false);
-    setMostPopular(data.data);
+    if (data.data.length > 0) {
+      setMostPopular(data.data);
+    }
+    if (data.status == 429) {
+      setIsError(true);
+    }
   };
   const fetchTopAnimes = async () => {
     setIsLoading(true);
@@ -36,7 +47,12 @@ const AppProvider = ({ children }) => {
     );
     const data = await response.json();
     setIsLoading(false);
-    setTopAnimes(data.data);
+    if (data.data.length > 0) {
+      setTopAnimes(data.data);
+    }
+    if (data.status == 429) {
+      setIsError(true);
+    }
   };
   const fetchMostFavorited = async () => {
     setIsLoading(true);
@@ -45,7 +61,12 @@ const AppProvider = ({ children }) => {
     );
     const data = await response.json();
     setIsLoading(false);
-    setMostFavorited(data.data);
+    if (data.data.length > 0) {
+      setMostFavorited(data.data);
+    }
+    if (data.status === 429) {
+      setIsError(true);
+    }
   };
 
   const handleSubmit = (e) => {
@@ -58,7 +79,7 @@ const AppProvider = ({ children }) => {
     // fetchMostPopular();
     // fetchTopAnimes();
     // fetchMostFavorited()
-  }, []);
+  }, [search]);
 
   return (
     <AppContext.Provider
@@ -77,6 +98,7 @@ const AppProvider = ({ children }) => {
         fetchTopAnimes,
         mostFavorited,
         fetchMostFavorited,
+        isError,
       }}
     >
       {children}
